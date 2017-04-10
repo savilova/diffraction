@@ -1,6 +1,8 @@
 #ifndef DIFF_SYS
 #define DIFF_SYS
 
+#include <iostream>
+
 
 class diff_system
 {
@@ -10,13 +12,21 @@ public:
     float z;
     int M;
     int N;
-    int f_0[M][N];
-    int f_z[M][N];
+    int **f_0;
+    int **f_z;
 
     
     //конструктор
-    diff_system(){
+    diff_system(int ** f){
+        wave = 532;
+        k  = 2*3.1416/wave;
+        z = 2;
+        M = 50;
+        N = 50;
+        f_0 = f;            
         //TODO
+
+
     }
      
     //деструктор 
@@ -25,11 +35,21 @@ public:
     }
 
     //подсчет поля в плоскости z по принципу Гюйгенса-Френеля(интеграл)
-    void transform(int f_0[M][N]){
-
-        int f[M][N];
+    void transform(){
+    std::cout << "Hello!This is transform function!" << std::endl; 
+    for (int i = 0; i<M; i++){
+        for(int j = 0; j<N; j++){
+            std::cout << f_0[i][j];
+        }
+        std::cout << std::endl;
+    }
+    std::cout << "Done!" << std::endl;
+    
         //TO DO
-        this->f_z=f;
+        /*
+        интенсивность (вещ. число от 0 до 1) предлагаю пока умножать на 100 и округлять до интов.
+        распечатывать пока только матрицу интенсивностей, как обычно в ostream.
+        */
         //в длинном комменте - первая версия интеграла
     /*
         int lyambda, z;
@@ -101,7 +121,7 @@ public:
         delete Im_G_table;
         delete intensive;
     */
-
+}
 };
 
 #endif // DIFF_SYS
