@@ -8,12 +8,13 @@ int main()
 {
 
 	//тестовая матрица для начального поля
-	int **test = new int *[50];
-	for(int i = 0; i <50; i++) test[i] = new int[50];
+	int **test = new int *[5];
+	for(int i = 0; i <5; i++)
+        test[i] = new int[5];
 
-	for (int i = 0; i<50; i++){
-		for(int j = 0; j<50; j++){
-			if (j<25||j>30) {
+	for (int i = 0; i<5; i++){
+		for(int j = 0; j<5; j++){
+			if (j<2||j>3) {
 				test[i][j]= 0;
 			}
 			else {
@@ -27,6 +28,12 @@ int main()
 
 	diff_system test_sys(test);
 	test_sys.transform();
+
+	for (int i=0;i<5;i++)
+        {
+            delete [] test[i];
+        }
+    delete [] test;
 
        return 0;
 }
