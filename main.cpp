@@ -6,6 +6,6 @@ using namespace std;
 
 int main()
 {
-		cout << "I`m alive!" << endl;
+    draw();
        return 0;
 }
