@@ -1,6 +1,7 @@
 #include <iostream>
 #include <fstream>
 #include <math.h>
+#include <cmath>
 #include "diff_system.h"
 using namespace std;
 

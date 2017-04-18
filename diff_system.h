@@ -3,6 +3,7 @@
 
 #include <iostream>
 
+
 using namespace std;
 
 class diff_system
@@ -15,7 +16,7 @@ public:
     int col;
     int **f_0;
     double **f_z;
-    int Size;
+    double Size;
 
 
     //конструктор
@@ -42,14 +43,14 @@ public:
 
     //подсчет поля в плоскости z по принципу Гюйгенса-Френеля(интеграл)
     void transform(){
-    std::cout << "Hello!This is transform function!" << std::endl;
-    for (int i = 0; i<row; i++){
-        for(int j = 0; j<col; j++){
-            std::cout << f_0[i][j];
-        }
-        std::cout << std::endl;
-    }
-    std::cout << "Done!" << std::endl;
+   // std::cout << "Hello!This is transform function!" << std::endl;
+    //for (int i = 0; i<row; i++){
+      //  for(int j = 0; j<col; j++){
+        //    std::cout << f_0[i][j];
+        //}
+       // std::cout << std::endl;
+    //}
+    //std::cout << "Done!" << std::endl;
 
         //TO DO
         /*
@@ -70,7 +71,8 @@ public:
         {
             Im_G_table[i] = new int[col];
         }
-        std::cout<<"Mass ok!"<<std::endl;
+
+
         for (int x = 0; x < row; x++)
         {
 //            cout << "X = " << x << " Row = " << row << endl;
@@ -85,10 +87,10 @@ public:
                 for (int c = 0; c < col; c++)
                 {
   //                  cout << "C = " << c << " Col = " << col << endl;
-                    double R = sqrt(pow(z,2)+pow((Size/1000)*(x-r),2)+pow((Size/1000)*(y-c),2));
+                    double R = sqrt(pow(z,2)+pow((Size/1000)*abs((x-r)),2)+pow((Size/1000)*abs((y-c)),2));
                     double cosinus = z/R;
-                    double Re_per_Sum = f_0[r][c] * (cosinus/R) *cos(k*pow(10,9)/R);
-                    double Im_per_Sum = f_0[r][c] * (cosinus/R) *sin(k*pow(10,9)/R);
+                    double Re_per_Sum = f_0[r][c] * (cosinus/R) *cos(k*pow(10,9)*R);
+                    double Im_per_Sum = f_0[r][c] * (cosinus/R) *sin(k*pow(10,9)*R);
                     Re_Sum += Re_per_Sum*pow((Size/1000),2);
                     Im_Sum += Im_per_Sum*pow((Size/1000),2);
                 }
