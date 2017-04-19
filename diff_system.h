@@ -103,7 +103,7 @@ public:
     }
 };
 
-int draw_2d(int **f);
+int draw();
 
 #endif // DIFF_SYS
 
