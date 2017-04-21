@@ -2,133 +2,138 @@
 #define DIFF_SYS
 
 #include <iostream>
-
-
 using namespace std;
+
+void draw_mat(int w, int h, int *data);
+
+
 
 class diff_system
 {
 public:
-    int wave;
-    double k;
-    double z;
-    int row;
-    int col;
-    int **f_0;
-    double **f_z;
-    double Size;
+    int scale, n_cols, n_rows;
+    int n_size;
+    int wave; //длина волны, нм
+    double k; //волновое число, 1/нм
+    double z; //расстояние от (0,0) на препятствии до (0,0) на экране, мкм
+    int rows; //число рассматриваемых отрезков dy
+    int cols; //число рассматриваемых отрезков dx
+    int m_size; //размер массива
+    int *f_0; //матрица прозрачности препятствия, единицы - ?
+    int *f_z; // матрица интенсивности в плоскости экрана, единицы - ?
+    int cell; //длина dx и dy, мкм
 
 
-    //конструктор
-    diff_system(int ** f){
-        wave = 532;
+
+    //самый полный конструктор
+    diff_system(int sc, int w, double z, int r, int c, int *f)
+    {
+        wave = w;
         k  = 2*3.1416/wave;
-        z = 2;
-        row = 5;
-        col = 5;
+        this->z = z;
+        rows = r;
+        cols = c;
+        m_size = rows*cols;
         f_0 = f;
-        f_z = new double *[5];
-        for(int i = 0; i <5; i++)
-        {
-            f_z[i] = new double [5];
-        }
-        Size = 10;
+        scale = sc;
+        n_size = scale*scale*m_size;
+        n_cols = scale*cols;
+        n_rows = scale*rows;
+        f_z = new int [n_size];
+        for(int i=0; i<n_size; i++) f_z[i]=255;
+        cell = 10;
+        draw_mat(cols,rows,f_0);
+        draw_mat(n_cols,n_rows,f_z);
+
         //TODO
     }
 
     //деструктор
-    ~diff_system(){
-        //TODO
+    ~diff_system()
+    {
+        delete [] f_0;
+        delete [] f_z;
     }
 
-    //подсчет поля в плоскости z по принципу Гюйгенса-Френеля(интеграл)
-    void transform(){
-   // std::cout << "Hello!This is transform function!" << std::endl;
-    //for (int i = 0; i<row; i++){
-      //  for(int j = 0; j<col; j++){
-        //    std::cout << f_0[i][j];
-        //}
-       // std::cout << std::endl;
-    //}
-    //std::cout << "Done!" << std::endl;
+    //подсчет поля в плоскости z по принципу Гюйгенса-Френеля
+    void transform()
+    {
+        cout << "Hello!This is transform function!" << endl;
 
-        //TO DO
-        /*
-        интенсивность (вещ. число от 0 до 1) предлагаю пока умножать на 100 и округлять до интов.
-        распечатывать пока только матрицу интенсивностей, как обычно в ostream.
-        */
-        //в длинном комменте - первая версия интеграла
+        double * Re_G_table = new double [n_size];
+        double * Im_G_table = new double [n_size];
+
+        cout << "tables initialized" << endl;
+
+        double Re_Sum = 0;
+        double Im_Sum = 0;
+        double Re_per_Sum = 0;
+        double Im_per_Sum = 0;
+        double R = z;
 
 
-        int ** Re_G_table = new int * [row];
-        for (int i = 0; i< row; i++)
+        int ksi = 0;
+        int eta = 0;
+        int x = 0;
+        int y = 0;
+
+        cout << "variables initialized" << endl;
+        cout << "starting transform..." << endl;
+
+        for (int i = 0; i < n_size; i++) //перебор точек в плоскости экрана (x,y)
         {
-            Re_G_table[i] = new int[col];
-        }
 
-        int ** Im_G_table = new int * [row];
-        for (int i = 0; i< row; i++)
-        {
-            Im_G_table[i] = new int[col];
-        }
+            x = cell*(i%n_cols);
+            y = cell*((i - x)/n_cols);
 
 
-        for (int x = 0; x < row; x++)
-        {
-//            cout << "X = " << x << " Row = " << row << endl;
-        for (int y = 0; y < col; y++)
-        {
-  //          cout << "Y = " << y << " Col = " << col << endl;
-            double Re_Sum = 0;
-            double Im_Sum = 0;
-            for (int r = 0; r < row; r++)
+
+
+
+            for (int j = 0; j < m_size; j++) //перебор точек в плоскости f_0 (ksi,eta)
             {
-  //              cout << "R = " << r << " Row = " << row << endl;
-                for (int c = 0; c < col; c++)
-                {
-  //                  cout << "C = " << c << " Col = " << col << endl;
-                    double R = sqrt(pow(z,2)+pow((Size/1000)*abs((x-r)),2)+pow((Size/1000)*abs((y-c)),2));
-                    double cosinus = z/R;
-                    double Re_per_Sum = f_0[r][c] * (cosinus/R) *cos(k*pow(10,9)*R);
-                    double Im_per_Sum = f_0[r][c] * (cosinus/R) *sin(k*pow(10,9)*R);
-                    Re_Sum += Re_per_Sum*pow((Size/1000),2);
-                    Im_Sum += Im_per_Sum*pow((Size/1000),2);
-                }
+                ksi = cell*(j%cols);
+                eta = cell*((j-ksi)/cols);
+
+                R = sqrt(pow(z,2)+pow(x-ksi,2)+pow(y-eta,2));
+
+
+                Re_per_Sum = f_0[j] * z * sin(1000*k*R)/(wave*R*R);
+                Re_Sum += Re_per_Sum;
+
+                Im_per_Sum = f_0[j] * z * cos(1000*k*R)/(wave*R*R);
+                Im_Sum += Im_per_Sum;
+
             }
-            Re_G_table[x][y] = Re_Sum*pow(10,9)/wave;
-            Im_G_table[x][y] = Im_Sum*pow(10,9)/wave;
+
+            Re_G_table[i] = Re_Sum;
+            Im_G_table[i] = Im_Sum;
+            Re_Sum = 0;
+            Im_Sum = 0;
+
+        if ((int)(100*i/n_size)!=((int)(100*(i-1)/n_size))) cout << (int)(100*i/n_size) << "% calculations completed"<< endl;
         }
-        }
-        std::cout<<"For end!"<<std::endl;
-        for (int x = 0; x < row; x++)
+        cout<<"End of field calculations"<< endl;
+
+        for (int i = 0; i < n_size; i++)
         {
-  //          cout << "X = " << x << " Row = " << row << endl;
-        for (int y = 0; y < col; y++)
-        {
-          //  cout << "pow(Re_G_table[x][y],2) = " << pow(Re_G_table[x][y],2) << endl;
-          //  cout << "pow(Im_G_table[x][y],2) = " << pow(Im_G_table[x][y],2) << endl;
-         //   cout << "f_z[x][y] = " << f_z[x][y] << endl;
-            f_z[x][y] = pow(Re_G_table[x][y],2) + pow(Im_G_table[x][y],2);
-         //   std::cout<<"Hi!"<<std::endl;
-            std::cout<<f_z[x][y]<<' ';
-        }
-            std::cout << std::endl;
+              f_z[i] = (int)(pow(10,9)*(pow(Re_G_table[i],2) + pow(Im_G_table[i],2)));
+               if ((int)(100*i/n_size)!=((int)(100*(i-1)/n_size))) cout << (int)(100*i/n_size) << "% intensity calculations completed"<< endl;
+
         }
 
-        for (int i=0;i<row;i++)
-        {
-            delete [] Re_G_table[i];
-        }
+        cout << "drawing..." << endl;
+
+       draw_mat(n_cols, n_rows, f_z);
+
+        cout << "still okay " << endl;
         delete [] Re_G_table;
-
-
-        for (int i=0;i<row;i++)
-        {
-            delete [] Im_G_table[i];
-        }
         delete [] Im_G_table;
+        cout << "still okay after matrix clean" << endl;
 
-}
+
+    }
 };
+
 
 #endif // DIFF_SYS
