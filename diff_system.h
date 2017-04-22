@@ -9,7 +9,7 @@ using namespace std;
 class diff_system
 {
 public:
-    int wave;
+    int wave; //
     double k;
     double z;
     int row;
@@ -18,23 +18,32 @@ public:
     double **f_z;
     double Size;
 
+    friend double ** create_matrix(int, int);
+
 
     //конструктор
     diff_system(int ** f){
-        wave = 532;
-        k  = 2*3.1416/wave;
-        z = 2;
-        row = 5;
-        col = 5;
+        wave = 532;  // длина волны в нм
+        k  = 2*3.1416/wave;   // волновой вектор
+        z = 2;   // расстояние от препятствия до экрана
+        row = 30;   // количество рядов в матрице изображений
+        col = 30;  // количество столбцов в матрице изображений
         f_0 = f;
-        f_z = new double *[5];
-        for(int i = 0; i <5; i++)
-        {
-            f_z[i] = new double [5];
-        }
         Size = 10;
-        //TODO
+        f_z = create_matrix(row, col);
+        cout << "Well done!" << endl;
     }
+
+ /*   void create_matrix(double ** f_z, int row, int col)
+    {
+        cout << "It is create_matrix" << endl;
+        f_z = new double *[row];
+        for(int i = 0; i <row; i++)
+        {
+            f_z[i] = new double [col];
+        }
+        return;
+    }*/
 
     //деструктор
     ~diff_system(){
@@ -102,14 +111,14 @@ public:
         std::cout<<"For end!"<<std::endl;
         for (int x = 0; x < row; x++)
         {
-  //          cout << "X = " << x << " Row = " << row << endl;
+            cout << "X = " << x << " Row = " << row << endl;
         for (int y = 0; y < col; y++)
         {
-          //  cout << "pow(Re_G_table[x][y],2) = " << pow(Re_G_table[x][y],2) << endl;
-          //  cout << "pow(Im_G_table[x][y],2) = " << pow(Im_G_table[x][y],2) << endl;
-         //   cout << "f_z[x][y] = " << f_z[x][y] << endl;
+            cout << "pow(Re_G_table[x][y],2) = " << pow(Re_G_table[x][y],2) << endl;
+            cout << "pow(Im_G_table[x][y],2) = " << pow(Im_G_table[x][y],2) << endl;
+            cout << "f_z[x][y] = " << f_z[x][y] << endl;
             f_z[x][y] = pow(Re_G_table[x][y],2) + pow(Im_G_table[x][y],2);
-         //   std::cout<<"Hi!"<<std::endl;
+            std::cout<<"Hi!"<<std::endl;
             std::cout<<f_z[x][y]<<' ';
         }
             std::cout << std::endl;
@@ -131,4 +140,12 @@ public:
 }
 };
 
+double ** create_matrix(int row, int col)
+{
+        double **f = new double *[row];
+        for(int i = 0; i <row; i++)
+            f[i] = new double [col];
+
+        return f;
+}
 #endif // DIFF_SYS

@@ -8,14 +8,14 @@ using namespace std;
 int main()
 {
 
-	//тестовая матрица для начального поля
-	int **test = new int *[5];
-	for(int i = 0; i <5; i++)
-        test[i] = new int[5];
+	int length = 30;
+	int **test = new int *[length];
+	for(int i = 0; i <length; i++)
+        test[i] = new int[length];
 
-	for (int i = 0; i<5; i++){
-		for(int j = 0; j<5; j++){
-			if (j<2||j>3) {
+	for (int i = 0; i<length; i++){
+		for(int j = 0; j<length; j++){
+			if (j<(length/2)||j>(length/2)) {
 				test[i][j]= 0;
 			}
 			else {
@@ -30,7 +30,7 @@ int main()
 	diff_system test_sys(test);
 	test_sys.transform();
 
-	for (int i=0;i<5;i++)
+	for (int i=0;i<length;i++)
         {
             delete [] test[i];
         }
