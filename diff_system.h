@@ -1,29 +1,15 @@
 #ifndef DIFF_SYS
 #define DIFF_SYS
 
-#include <cmath>
 using namespace std;
 
-//Шаблон функции create_matrix
-template <typename T>
-void create_matrix(T *** Matrix, int lines, int columns)
+double ** create_matrix(int row, int col)
 {
-    (*Matrix) = new T * [lines];
+        double **f = new double *[row];
+        for(int i = 0; i <row; i++)
+            f[i] = new double [col];
 
-    for (int i = 0; i < lines; i++)
-        (*Matrix)[i] = new T [columns];
-}
-
-//Шаблон функции delete_matrix
-template <typename T>
-void delete_matrix(T *** Matrix, int columns)
-{
-    for (int i = 0; i < columns; i++)
-    {
-        delete [] ((*Matrix)[i]);
-    }
-    delete [] (*Matrix);
-
+        return f;
 }
 
 class diff_system
@@ -38,11 +24,11 @@ public:
     double **f_z;
     double Size;
 
-    template <typename T> friend void create_matrix(T *** Matrix, int lines, int columns);
-    template <typename T> friend void delete_matrix(T *** Matrix, int columns);
+    friend double ** create_matrix(int, int);
+
+
     //конструктор
-    diff_system(int ** f)
-    {
+    diff_system(int ** f){
         wave = 532;  // длина волны в нм
         k  = 2*3.1416/wave;   // волновой вектор
         z = 2;   // расстояние от препятствия до экрана
@@ -50,23 +36,20 @@ public:
         col = 30;  // количество столбцов в матрице изображений
         f_0 = f;
         Size = 10;
-        create_matrix(&f_z, row, col);
+        f_z = create_matrix(row, col);
         cout << "Well done!" << endl;
     }
 
     //деструктор
-    ~diff_system()
-    {
-        delete_matrix(&f_z, col);
+    ~diff_system(){
+        //TODO
     }
 
     //Подсчет поля в плоскости z по принципу Гюйгенса-Френеля(интеграл)
     void transform()
     {
-        double ** Re_G_table;
-        create_matrix(&Re_G_table, row, col);
-        double ** Im_G_table;
-        create_matrix(&Im_G_table, row, col);
+        double ** Re_G_table = create_matrix(row, col);
+        double ** Im_G_table = create_matrix(row, col);
 
         for (int x = 0; x < row; x++)
         {
@@ -99,14 +82,26 @@ public:
 
             for (int y = 0; y < col; y++)
             {
+                //cout << "f_z[x][y] = " << f_z[x][y] << endl;
                 f_z[x][y] = pow(Re_G_table[x][y],2) + pow(Im_G_table[x][y],2);
+               // cout<<"Hi!"<<endl;
                 cout<<f_z[x][y]<<' ';
             }
             cout << endl;
         }
 
-        delete_matrix(&Re_G_table, col);
-        delete_matrix(&Im_G_table, col);
+        for (int i=0;i<row;i++)
+        {
+            delete [] Re_G_table[i];
+        }
+        delete [] Re_G_table;
+
+
+        for (int i=0;i<row;i++)
+        {
+            delete [] Im_G_table[i];
+        }
+        delete [] Im_G_table;
     }
 };
 
