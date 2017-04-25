@@ -11,13 +11,13 @@ void draw_mat(int w, int h, int *data);
 class diff_system
 {
 public:
-    int cell; //физическая длина dx(d_ksi) и dy(d_eta), мкм
-    int scale; //отношение стороны экрана к стороне препятствия
-    int wave; //длина волны, нм
-    double k; //волновое число, 1/нм
-    double z; //расстояние от (0,0) на препятствии до (0,0) на экране, мкм
-    int o_cols, o_rows, o_size; // числа рассматриваемых отрезков d_ksi, d_eta и клеток в препятствии (obsticle)
-    int s_cols, s_rows, s_size; // числа рассматриваемых отрезков d_x, d_y и клеток на экране (screen)
+    int cell; //!физическая длина dx(d_ksi) и dy(d_eta), мкм
+    int scale; //!отношение стороны экрана к стороне препятствия
+    int wave; //!длина волны, нм
+    double k; //!волновое число, 1/нм
+    double z; //!расстояние от (0,0) на препятствии до (0,0) на экране, мкм
+    int o_cols, o_rows, o_size; //! числа рассматриваемых отрезков d_ksi, d_eta и клеток в препятствии (obsticle)
+    int s_cols, s_rows, s_size; //! числа рассматриваемых отрезков d_x, d_y и клеток на экране (screen)
     int *f_0; //! скалярная амплитуда поля в плоскости z_0+, единицы - ?
     int *f_z; //! интенсивность в плоскости экрана, единицы - ?
 
@@ -60,11 +60,11 @@ public:
 
         cout << "Hello!This is transform function!" << endl;
 
-        double * Re_G_table = new double [s_size];
-        double * Im_G_table = new double [s_size];
+        double * Re_G_table = new double [s_size]; //!Матрица поля G действительные значения
+        double * Im_G_table = new double [s_size]; //!Матрица поля G мнимые значения
 
         double Re_Sum, Im_Sum;
-        double Re_per_Sum = 0;
+        double Re_per_Sum = 0; //!Промежуточные значения суммы поля в каждой клетке
         double Im_per_Sum = 0;
         double R = z;
 
@@ -93,18 +93,18 @@ public:
             {
 
                 // ищем физические координаты центра площадки d_ksi*d_eta
-                ksi = cell*(j%o_cols);
-                eta = cell*((j-j%o_cols)/o_cols);
+                ksi = cell/2 + cell*(j%o_cols);
+                eta = cell/2 + cell*((j-j%o_cols)/o_cols);
 
                 //считаем расстояние от точки на препятствии до точки на экране
                 R = sqrt(pow(z,2)+pow(x-ksi,2)+pow(y-eta,2));
 
                 //! (1/i*wave) внесен под знак интеграла
 
-                Re_per_Sum = f_0[j] * z * sin(1000*k*R)/(wave*R*R); //вклад одной точки препятствия в поле текущей точки на экране
+                Re_per_Sum = f_0[j] * z * sin(0.001*k*R)/(wave*R*R*1000); //вклад одной точки препятствия в поле текущей точки на экране в единицах B/мкм^2
                 Re_Sum += Re_per_Sum; //суммирование по всем точкам препятствия
 
-                Im_per_Sum = f_0[j] * z * cos(1000*k*R)/(wave*R*R); // то же для мнимой части амплитуды
+                Im_per_Sum = f_0[j] * z * cos(0.001*k*R)/(wave*R*R*1000); // то же для мнимой части амплитуды в единицах B/мкм^2
                 Im_Sum += Im_per_Sum;
 
             }
@@ -123,8 +123,9 @@ public:
         for (int i = 0; i < s_size; i++)
         {
             //! FIXME (Аня#1#): нужно сделать подгон интенсивностей, после того как разберемся с единицами измерения
-            f_z[i] = (int)(pow(10,13)*(pow(Re_G_table[i],2) + pow(Im_G_table[i],2)));
-
+            f_z[i] = (int)(pow(10,18)*(pow(Re_G_table[i],2) + pow(Im_G_table[i],2)));
+     //       cout << "pow(10,12) * " << (pow(Re_G_table[i],2) + pow(Im_G_table[i],2)) << endl;
+     //       cout << "f_z[" << i <<"] = " << f_z[i] << endl;
             // прогресс бар
             if ((int)(100*i/s_size)!=((int)(100*(i-1)/s_size))) cout << (int)(100*i/s_size) << "% intensity calculations completed"<< endl;
 
