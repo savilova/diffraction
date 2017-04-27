@@ -7,24 +7,21 @@
 #include "highgui.h"
 using namespace std;
 
-
-
-
-
-void draw_mat(int w, int h, int *data)
+void draw_mat(int width, int length, int *data)
 {
-    IplImage *img = cvCreateImage(cvSize(w, h), IPL_DEPTH_8U, 1);
+    IplImage *img = cvCreateImage(cvSize(width, length), IPL_DEPTH_8U, 1);
     int i;
-    for (i = 0; i < img->imageSize; i++) img->imageData[i] = data[i];
+    for (i = 0; i < img->imageSize; i++)
+        img->imageData[i] = data[i];
 
-    // создаем окно с заголовком image
+    // Создаем окно с заголовком image
     cvNamedWindow ("image", 1);
-    // показываем в этом окне картинку img
+    // Показываем в этом окне картинку img
     cvShowImage ("image", img);
-    // ждем нажатия юбой клавиши
+    // Ждем нажатия юбой клавиши
     cvWaitKey (0);
 
-    // освобождаем память перд выходм из программы
+    // Освобождаем память перд выходм из программы
     cvReleaseImage (&img);
     cvDestroyWindow("image");
 
@@ -32,26 +29,34 @@ void draw_mat(int w, int h, int *data)
 
 int main()
 {
+    // Матрица препядствия, где светлые точки это отверстие
+    // Всё остальное это тёмные отверстия
+    // В данной версии отверстие прямоугольное
 
-    //тестовая матрица для начального поля
-    int h = 6;
-    int w = 6;
-    int *test = new int[h*w];
+    // Размер пикселя препядствия в микронах
+    int o_pixel_size = 25;
 
-    for (int i = 0; i<h*w; i++) test[i]=200;
+    // Размер пикселя результирующей картины в микронах
+    int s_pixel_size = 100;
 
+    int wave = 532;  // Длина волны в нанометрах
+    int R = 1000000; // Расстояние до экрана в мкм
+    int length = 6; // Длина отверстия
+    int width = 6;  // Ширина отверстия
+    int *obstacle = new int[length*width]; // Матрица препядствия
 
-    diff_system * test_sys = new diff_system(400, 532, 1000000, h, w, test);
-    draw_mat(test_sys->o_cols,test_sys->o_rows,test_sys->f_0);
-    draw_mat(test_sys->s_cols,test_sys->s_rows,test_sys->f_z);
+    for (int i = 0; i < length*width; i++)
+        obstacle[i] = 200; // Яркость точек отверстия 200
 
-    test_sys->transform();
+    diff_system * Screen = new diff_system(o_pixel_size, s_pixel_size, wave, R, length, width, obstacle);
+    draw_mat(Screen->o_cols,Screen->o_rows,Screen->Obstacle);
+    draw_mat(Screen->s_cols,Screen->s_rows,Screen->Intensity);
+
+    Screen->transform();
     cout << "transform sucseeded " << endl;
 
-    delete [] test;
-    cout << "deleted test " << endl;
-//   delete test_sys;
-    // cout << " deleted system " << endl;
+    delete [] obstacle;
+    cout << "deleted obstacle " << endl;
 
     return 0;
 }
