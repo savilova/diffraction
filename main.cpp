@@ -1,10 +1,16 @@
+#include "mainwindow.h"
+#include "diff_system.h"
+#include <QApplication>
+
 #include <iostream>
 #include <fstream>
 #include <math.h>
 #include <cmath>
-#include "diff_system.h"
-#include "cv.h"
-#include "highgui.h"
+
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.hpp>
+
+
 using namespace std;
 
 void draw_mat(int width, int length, int *data)
@@ -27,8 +33,12 @@ void draw_mat(int width, int length, int *data)
 
 }
 
-int main()
+int main(int argc, char *argv[])
 {
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
+
     // Матрица препядствия, где светлые точки это отверстие
     // Всё остальное это тёмные отверстия
     // В данной версии отверстие прямоугольное
@@ -58,5 +68,5 @@ int main()
     delete [] obstacle;
     cout << "deleted obstacle " << endl;
 
-    return 0;
+    return  a.exec();
 }
