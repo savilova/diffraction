@@ -35,9 +35,6 @@ void draw_mat(int width, int length, int *data)
 
 int main(int argc, char *argv[])
 {
-    QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
 
     // Матрица препядствия, где светлые точки это отверстие
     // Всё остальное это тёмные отверстия
@@ -68,5 +65,5 @@ int main(int argc, char *argv[])
     delete [] obstacle;
     cout << "deleted obstacle " << endl;
 
-    return  a.exec();
+    return  0;
 }
