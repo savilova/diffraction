@@ -5,7 +5,9 @@
 class obstacle
 {
 public:
-    int pixel_size, cols, size;
+    double pixel;
+    int width;
+    int size;
     int * data;
     obstacle();
     ~obstacle();
