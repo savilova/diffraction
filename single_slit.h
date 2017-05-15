@@ -6,7 +6,8 @@ class single_slit : public obstacle
 {
 public:
     single_slit();
-    generate_data();
+    void generate_calc_data();
+    void generate_img_data();
 };
 
 #endif // SINGLE_SLIT_H
