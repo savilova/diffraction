@@ -29,9 +29,5 @@ void draw_mat(int width, int length, int *data)
 int main()
 {
 
-
-diff_system * test = new diff_system();
-test->transform();
-
     return 0;
 }

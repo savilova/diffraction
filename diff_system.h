@@ -2,6 +2,7 @@
 #define DIFF_SYS
 #include "obstacle.h"
 
+
 void draw_mat(int w, int h, int *data);
 
 class diff_system

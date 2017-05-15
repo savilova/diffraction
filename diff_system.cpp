@@ -34,7 +34,6 @@ diff_system::diff_system(int magnitude, int pixel, int wave, double z, obstacle 
     this->o = o;
     Intensity = new int[size];
     for (int i = 0; i < size; i++) Intensity[i] = 0; // по умолчанию экран не освещен
-}
 
 diff_system::~diff_system(void)
 {
@@ -45,6 +44,7 @@ diff_system::~diff_system(void)
 void diff_system::transform(void)
 {
     //! FIXME (Аня#1#): Дифракционная картина пока повернута на 90 градусов
+
 
     cout << "Hello!This is transform function!" << endl;
 
@@ -72,6 +72,7 @@ void diff_system::transform(void)
         Im_G_table[i] = 0;
 
         // Интегрирование для одной точки экрана
+
         for (int j = 0; j < o->size; j++) // Перебор точек в плоскости (ksi,eta)
         {
 
@@ -79,11 +80,13 @@ void diff_system::transform(void)
             ksi = pixel*(int)(width/2) - o->pixel*(int)(o->width/2) + o->pixel/2 + o->pixel*(j%o->width);
             eta = pixel*(int)(width/2) - o->pixel*(int)(o->width/2) + o->pixel/2 + o->pixel*((j-j%o->width)/o->width);
 
+
             //Считаем расстояние от точки на препятствии до точки на экране
             R = sqrt(pow(z,2)+pow(x-ksi,2)+pow(y-eta,2));
 
             //! (1/i*wave) внесен под знак интеграла
             // Вклад одной точки препятствия в поле текущей точки на экране в единицах B/мкм^2
+
 
             Re_G_table[i] +=o->calc_data[j]* magnitude * z * sin(0.001*k*R)/(wave*R*R*1000);
 
@@ -103,11 +106,14 @@ void diff_system::transform(void)
     cout<<"End of field calculations"<< endl;
 
    // New! Ищем максимум и минимум, чтобы потом отнормировать, чтобы картина была контрастнее
+
     double MAX = pow(Re_G_table[0],2) + pow(Im_G_table[0],2);
     double MIN = MAX;
 
     // Считаем интенсивность в плоскости экрана
+
     for (int i = 0; i < size; i++)
+
     {
         //! FIXME (Аня#1#): нужно сделать подгон интенсивностей, после того как разберемся с единицами измерения
         dIntensity[i] = pow(Re_G_table[i],2) + pow(Im_G_table[i],2);
@@ -117,7 +123,8 @@ void diff_system::transform(void)
         if (dIntensity[i] < MIN)
             MIN = dIntensity[i];
 
-        // Процентное выполнение подсчёта double интенсивности
+        // Процентное выполнение подсчёта double интенсивноси
+      
         if ((100*i/size) != (100*(i-1)/size))
             cout << (int)(100*i/size) << "% calculations completed (dIntensity)"<< endl;
     }
@@ -137,4 +144,6 @@ void diff_system::transform(void)
     //draw_mat(width, width, test);
     delete [] Re_G_table;
     delete [] Im_G_table;
+
+
 }
