@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>tempSetting</class>
+ <widget class="QDialog" name="tempSetting">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>456</width>
+    <height>354</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QDialogButtonBox" name="buttonBox">
+   <property name="geometry">
+    <rect>
+     <x>90</x>
+     <y>310</y>
+     <width>341</width>
+     <height>32</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+   <property name="standardButtons">
+    <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_3"/>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_4"/>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_5"/>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>2</width>
+     <height>2</height>
+    </rect>
+   </property>
+   <layout class="QHBoxLayout" name="horizontalLayout_7"/>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>10</y>
+     <width>361</width>
+     <height>226</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout_2">
+    <item>
+     <widget class="QGroupBox" name="groupBox">
+      <property name="title">
+       <string>Установка</string>
+      </property>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <layout class="QGridLayout" name="gridLayout">
+         <item row="0" column="5">
+          <widget class="QLineEdit" name="lineEdit"/>
+         </item>
+         <item row="1" column="0" colspan="2">
+          <widget class="QLabel" name="label_2">
+           <property name="text">
+            <string>Ширина экрана, см:</string>
+           </property>
+           <property name="buddy">
+            <cstring>lineEdit_2</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="0" column="1" colspan="4">
+          <spacer name="horizontalSpacer">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>48</width>
+             <height>17</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="2" colspan="3">
+          <spacer name="horizontalSpacer_2">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="1" column="5">
+          <widget class="QLineEdit" name="lineEdit_2"/>
+         </item>
+         <item row="3" column="4">
+          <spacer name="horizontalSpacer_3">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item row="3" column="5">
+          <widget class="QLineEdit" name="lineEdit_3"/>
+         </item>
+         <item row="0" column="0">
+          <widget class="QLabel" name="label">
+           <property name="text">
+            <string>Длина волны, нм:</string>
+           </property>
+           <property name="buddy">
+            <cstring>lineEdit</cstring>
+           </property>
+          </widget>
+         </item>
+         <item row="3" column="0">
+          <widget class="QLabel" name="label_3">
+           <property name="text">
+            <string>Расстояние до экрана, см:</string>
+           </property>
+           <property name="buddy">
+            <cstring>lineEdit_3</cstring>
+           </property>
+          </widget>
+         </item>
+        </layout>
+       </item>
+      </layout>
+     </widget>
+    </item>
+    <item>
+     <widget class="QGroupBox" name="groupBox_2">
+      <property name="title">
+       <string>Препятствие</string>
+      </property>
+      <layout class="QVBoxLayout" name="verticalLayout">
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_8">
+         <item>
+          <widget class="QLabel" name="label_5">
+           <property name="text">
+            <string>Тип:</string>
+           </property>
+           <property name="buddy">
+            <cstring>comboBox</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_6">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QComboBox" name="comboBox">
+           <item>
+            <property name="text">
+             <string>Щель</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Две щели</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Одномерная решетка</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Двумерная решетка</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Круглое отверстие</string>
+            </property>
+           </item>
+          </widget>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_2">
+         <item>
+          <widget class="QLabel" name="label_7">
+           <property name="text">
+            <string>L</string>
+           </property>
+           <property name="buddy">
+            <cstring>lineEdit_5</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_4">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_5"/>
+         </item>
+        </layout>
+       </item>
+       <item>
+        <layout class="QHBoxLayout" name="horizontalLayout_6">
+         <item>
+          <widget class="QLabel" name="label_8">
+           <property name="text">
+            <string>Lll</string>
+           </property>
+           <property name="buddy">
+            <cstring>lineEdit_6</cstring>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_5">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_6"/>
+         </item>
+        </layout>
+       </item>
+      </layout>
+      <zorder>comboBox</zorder>
+      <zorder>lineEdit_5</zorder>
+      <zorder>lineEdit_6</zorder>
+      <zorder>label_7</zorder>
+      <zorder>label_8</zorder>
+      <zorder>horizontalSpacer_4</zorder>
+      <zorder>horizontalSpacer_5</zorder>
+      <zorder>label_5</zorder>
+      <zorder>horizontalSpacer_6</zorder>
+      <zorder>comboBox</zorder>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <zorder>groupBox_2</zorder>
+  <zorder>buttonBox</zorder>
+  <zorder>lineEdit</zorder>
+  <zorder>label</zorder>
+  <zorder>label_2</zorder>
+  <zorder>lineEdit_2</zorder>
+  <zorder>label_3</zorder>
+  <zorder>lineEdit_3</zorder>
+  <zorder>horizontalSpacer_2</zorder>
+  <zorder>horizontalSpacer_3</zorder>
+  <zorder>groupBox</zorder>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>accepted()</signal>
+   <receiver>tempSetting</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>308</x>
+     <y>324</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>157</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonBox</sender>
+   <signal>rejected()</signal>
+   <receiver>tempSetting</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>376</x>
+     <y>330</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>286</x>
+     <y>274</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

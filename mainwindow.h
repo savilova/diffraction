@@ -17,6 +17,9 @@ public:
     ~MainWindow();
 
 
+private slots:
+    void on_fromTemp_triggered();
+
 private:
     Ui::MainWindow *ui;
     tempSetting * tempSettingPage;

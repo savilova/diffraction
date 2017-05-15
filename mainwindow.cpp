@@ -19,3 +19,9 @@ MainWindow::~MainWindow()
 
 
 
+
+void MainWindow::on_fromTemp_triggered()
+{
+        tempSettingPage = new tempSetting(this);
+        tempSettingPage->show();
+}
