@@ -63,17 +63,16 @@
     <property name="title">
      <string>Меню</string>
     </property>
-    <widget class="QMenu" name="menu_2">
+    <widget class="QMenu" name="createSys">
      <property name="title">
       <string>Создать систему</string>
      </property>
-     <addaction name="action_6"/>
-     <addaction name="action_7"/>
+     <addaction name="template_2"/>
+     <addaction name="img"/>
     </widget>
-    <addaction name="menu_2"/>
-    <addaction name="action_4"/>
+    <addaction name="createSys"/>
     <addaction name="separator"/>
-    <addaction name="action_5"/>
+    <addaction name="exit"/>
    </widget>
    <addaction name="menu"/>
   </widget>
@@ -87,37 +86,12 @@
     <string>Выход</string>
    </property>
   </action>
-  <action name="initSys">
-   <property name="text">
-    <string>По шаблону</string>
-   </property>
-  </action>
-  <action name="action">
-   <property name="text">
-    <string>По шаблону</string>
-   </property>
-  </action>
-  <action name="action_2">
-   <property name="text">
-    <string>По картинке</string>
-   </property>
-  </action>
-  <action name="action_4">
-   <property name="text">
-    <string>Сохранить картинку как...</string>
-   </property>
-  </action>
-  <action name="action_5">
-   <property name="text">
-    <string>Выход</string>
-   </property>
-  </action>
-  <action name="action_6">
+  <action name="template_2">
    <property name="text">
     <string>Шаблон...</string>
    </property>
   </action>
-  <action name="action_7">
+  <action name="img">
    <property name="text">
     <string>По картинке</string>
    </property>
@@ -125,5 +99,22 @@
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
- <connections/>
+ <connections>
+  <connection>
+   <sender>exit</sender>
+   <signal>triggered()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>373</x>
+     <y>174</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
 </ui>
