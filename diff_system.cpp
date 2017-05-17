@@ -35,7 +35,11 @@ diff_system::diff_system(int magnitude, int pixel, int wave, double z, obstacle 
     Intensity = new int[size];
     for (int i = 0; i < size; i++) Intensity[i] = 0; // по умолчанию экран не освещен
 <<<<<<< HEAD
+<<<<<<< HEAD
 }
+=======
+
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 =======
 
 >>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
@@ -144,6 +148,12 @@ void diff_system::transform(void)
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+    cout << "drawing..." << endl;
+    draw_mat(width, width, Intensity);
+    //draw_mat(width, width, test);
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 =======
     cout << "drawing..." << endl;
     draw_mat(width, width, Intensity);

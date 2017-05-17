@@ -26,6 +26,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
     demo_window.cpp \
     main_window.cpp \
+<<<<<<< HEAD \
+    cpp/demo_window.cpp \
+    cpp/diff_system.cpp \
+    cpp/main_window.cpp \
+    cpp/obstacle.cpp \
+    cpp/single_slit.cpp \
+    cpp/temp_setting.cpp \
+    diff_system.cpp \
+    obstacle.cpp \
+    single_slit.cpp \
+    temp_setting.cpp
 <<<<<<< HEAD
     temp_setting.cpp \
     diff_system.cpp \
@@ -40,11 +51,24 @@ SOURCES += main.cpp\
 =======
     temp_setting.cpp
 >>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
+=======
+    temp_setting.cpp
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 
 HEADERS  += \
     diff_system.h \
     demo_window.h \
     main_window.h \
+<<<<<<< HEAD \
+    h/demo_window.h \
+    h/diff_system.h \
+    h/main_window.h \
+    h/obstacle.h \
+    h/single_slit.h \
+    h/temp_setting.h \
+    obstacle.h \
+    single_slit.h \
+    temp_setting.h
 <<<<<<< HEAD
     temp_setting.h \
     obstacle.h \
@@ -58,15 +82,26 @@ HEADERS  += \
 =======
     temp_setting.h
 >>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
+=======
+    temp_setting.h
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 
 FORMS    += \
     demo_window.ui \
     main_window.ui \
+<<<<<<< HEAD \
+    graphics/demo_window.ui \
+    graphics/main_window.ui \
+    graphics/temp_setting.ui \
+    temp_setting.ui
 <<<<<<< HEAD
     temp_setting.ui \
     graphics/demo_window.ui \
     graphics/main_window.ui \
     graphics/temp_setting.ui
+=======
+    temp_setting.ui
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 =======
     temp_setting.ui
 >>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
@@ -85,6 +120,11 @@ LIBS += -LH:\opencv-build\install\x86\mingw\lib \
 
 
 DISTFILES += \
+<<<<<<< HEAD \
+    img/scheme.jpg \
+    img/icon.ico \
+    icon.ico \
+    README.md
 <<<<<<< HEAD
     img/icon.png \
     diffraction.pro.user \
@@ -92,6 +132,9 @@ DISTFILES += \
     README.md \
     img/scheme.jpg \
     img/icon.ico
+=======
+    img/icon.png
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 =======
     img/icon.png
 >>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
