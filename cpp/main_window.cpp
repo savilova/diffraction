@@ -1,5 +1,5 @@
-#include "main_window.h"
-#include"demo_window.h"
+#include "h/main_window.h"
+#include"h/demo_window.h"
 #include "ui_main_window.h"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"

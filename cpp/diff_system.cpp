@@ -1,4 +1,4 @@
-#include "diff_system.h"
+#include "h/diff_system.h"
 
 #include <math.h>
 #include <cmath>

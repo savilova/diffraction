@@ -1,6 +1,6 @@
-#include "demo_window.h"
+#include "h/demo_window.h"
 #include "ui_demo_window.h"
-#include "diff_system.h"
+#include "h/diff_system.h"
 #include "opencv2/imgproc/imgproc.hpp"
 #include "opencv2/highgui/highgui.hpp"
 #include "opencv2\core\core.hpp"

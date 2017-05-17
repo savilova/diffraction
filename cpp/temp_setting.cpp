@@ -1,4 +1,4 @@
-#include "temp_setting.h"
+#include "h/temp_setting.h"
 #include "ui_temp_setting.h"
 
 temp_setting::temp_setting(QWidget *parent) :

@@ -1,5 +1,5 @@
-#include "obstacle.h"
-#include "single_slit.h"
+#include "h/obstacle.h"
+#include "h/single_slit.h"
 #include <math.h>
 #include <cmath>
 

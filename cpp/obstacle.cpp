@@ -1,4 +1,4 @@
-#include "obstacle.h"
+#include "h/obstacle.h"
 
 obstacle::obstacle()
 {
