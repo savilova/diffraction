@@ -100,14 +100,21 @@ void diff_system::transform(void)
             eta = o_pixel_size/2 + o_pixel_size*((j-j%o_cols)/o_cols);
 
             //Считаем расстояние от точки на препятствии до точки на экране
-            R = sqrt(pow(z,2)+pow(x-ksi,2)+pow(y-eta,2));
+         //   R = sqrt(pow(z,2)+pow(x-ksi,2)+pow(y-eta,2));
 
             //! (1/i*wave) внесен под знак интеграла
             // Вклад одной точки препятствия в поле текущей точки на экране в единицах B/мкм^2
-            Re_G_table[i] += Obstacle[j] * z * sin(0.001*k*R)/(wave*R*R*1000);
+           // Re_G_table[i] += Obstacle[j] * z * sin(0.001*k*R)/(wave*R*R*1000);
 
             // Теперь для мнимой части амплитуды в единицах B/мкм^2
-            Im_G_table[i] += Obstacle[j] * z * cos(0.001*k*R)/(wave*R*R*1000);
+            //Im_G_table[i] += Obstacle[j] * z * cos(0.001*k*R)/(wave*R*R*1000);
+
+            // Вклад одной точки препятствия в поле текущей точки на экране в единицах B/мкм^2
+            Re_G_table[i] += Obstacle[j] * sin(0.001*k*z+0.0005*k*(pow(x-ksi,2)+pow(y-eta,2))/z)/(wave*z);
+
+            // Теперь для мнимой части амплитуды в единицах B/мкм^2
+            Im_G_table[i] += Obstacle[j] * cos(0.001*k*z+0.0005*k*(pow(x-ksi,2)+pow(y-eta,2))/z)/(wave*z);
+
 
         }
 
@@ -147,7 +154,7 @@ void diff_system::transform(void)
 
     cout << "drawing..." << endl;
 
-    draw_mat(s_cols, s_rows, Intensity);
+  //  draw_mat(s_cols, s_rows, Intensity);
 
     cout << "still okay " << endl;
     delete [] Re_G_table;
