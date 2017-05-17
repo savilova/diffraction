@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>MainWindow</class>
- <widget class="QMainWindow" name="MainWindow">
+ <class>main_window</class>
+ <widget class="QMainWindow" name="main_window">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -39,7 +39,7 @@
      <string/>
     </property>
    </widget>
-   <widget class="QWidget" name="">
+   <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
       <x>34</x>
@@ -116,6 +116,7 @@
      <property name="title">
       <string>Создать систему</string>
      </property>
+     <addaction name="demo"/>
      <addaction name="fromTemp"/>
      <addaction name="fromImg"/>
     </widget>
@@ -140,6 +141,11 @@
     <string>Выход</string>
    </property>
   </action>
+  <action name="demo">
+   <property name="text">
+    <string>Демонстрация</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
  <resources/>
@@ -147,7 +153,7 @@
   <connection>
    <sender>exit</sender>
    <signal>triggered()</signal>
-   <receiver>MainWindow</receiver>
+   <receiver>main_window</receiver>
    <slot>close()</slot>
    <hints>
     <hint type="sourcelabel">

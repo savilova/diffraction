@@ -24,12 +24,22 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+    demo_window.cpp \
+    main_window.cpp \
+    temp_setting.cpp
 
-HEADERS  += mainwindow.h \
-    diff_system.h
+HEADERS  += \
+    diff_system.h \
+    demo_window.h \
+    main_window.h \
+    temp_setting.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    demo_window.ui \
+    main_window.ui \
+    temp_setting.ui
+
+RC_ICONS = icon.ico
 
 
 INCLUDEPATH += H:\opencv-build\install\include
@@ -40,3 +50,6 @@ LIBS += -LH:\opencv-build\install\x86\mingw\lib \
     -lopencv_imgproc320.dll \
     -lopencv_features2d320.dll \
     -lopencv_calib3d320.dll
+
+DISTFILES += \
+    img/icon.png
