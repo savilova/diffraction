@@ -13,10 +13,16 @@ class demo_window : public QDialog
 
 public:
     explicit demo_window(QWidget *parent = 0);
-    ~demo_window();
+    QImage obstacle_display;
+    QImage screen_display;
 
+    ~demo_window();
+    void displayObstacle(int, int , int*);
+    void displayScreen();
 private:
     Ui::demo_window *ui;
+
+
 };
 
 #endif // DEMO_WINDOW_H
