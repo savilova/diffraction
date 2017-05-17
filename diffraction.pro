@@ -26,6 +26,7 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
     demo_window.cpp \
     main_window.cpp \
+<<<<<<< HEAD
     temp_setting.cpp \
     diff_system.cpp \
     obstacle.cpp \
@@ -36,11 +37,15 @@ SOURCES += main.cpp\
     cpp/obstacle.cpp \
     cpp/single_slit.cpp \
     cpp/temp_setting.cpp
+=======
+    temp_setting.cpp
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 
 HEADERS  += \
     diff_system.h \
     demo_window.h \
     main_window.h \
+<<<<<<< HEAD
     temp_setting.h \
     obstacle.h \
     single_slit.h \
@@ -50,14 +55,21 @@ HEADERS  += \
     h/obstacle.h \
     h/single_slit.h \
     h/temp_setting.h
+=======
+    temp_setting.h
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 
 FORMS    += \
     demo_window.ui \
     main_window.ui \
+<<<<<<< HEAD
     temp_setting.ui \
     graphics/demo_window.ui \
     graphics/main_window.ui \
     graphics/temp_setting.ui
+=======
+    temp_setting.ui
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
 
 RC_ICONS = icon.ico
 
@@ -73,9 +85,13 @@ LIBS += -LH:\opencv-build\install\x86\mingw\lib \
 
 
 DISTFILES += \
+<<<<<<< HEAD
     img/icon.png \
     diffraction.pro.user \
     icon.ico \
     README.md \
     img/scheme.jpg \
     img/icon.ico
+=======
+    img/icon.png
+>>>>>>> d7397fa84d4dfa6e66bacd18f4cdb4244656de94
