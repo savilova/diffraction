@@ -32,6 +32,7 @@ void main_window::on_fromTemp_triggered()
 
 void main_window::on_demo_triggered()
 {
+
     demoWin = new demo_window(this); //вызываем конструктор по умолчанию
-       demoWin->show();
+    demoWin->show();
 }

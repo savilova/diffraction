@@ -11,7 +11,7 @@ diff_system::diff_system()
     magnitude = 100; // от балды
     wave = 532; // зеленый лазер
     k = 2*3.141593/wave;
-    pixel = 10000; // стандартный экран 40х40 см
+    pixel = 1000; // стандартный экран 40х40 см
     width = 400;
     size = width*width;
     z = 2000000; // 2 м до экрана
@@ -88,11 +88,11 @@ void diff_system::transform(void)
             // Вклад одной точки препятствия в поле текущей точки на экране в единицах B/мкм^2
 
 
-            Re_G_table[i] +=o->calc_data[j]* magnitude * z * sin(0.001*k*R)/(wave*R*R*1000);
+            Re_G_table[i] +=pow(o->pixel,2)*o->calc_data[j]* magnitude * z * sin(0.001*k*R)/(wave*R*R*1000);
 
 
            // Теперь для мнимой части амплитуды в единицах B/мкм^2
-            Im_G_table[i] +=o->calc_data[j]* magnitude * z * cos(0.001*k*R)/(wave*R*R*1000);
+     //       Im_G_table[i] +=o->calc_data[j]* magnitude * z * cos(0.001*k*R)/(wave*R*R*1000);
         }
 
         // Процентное выполнение подсчёта мнимой и действительной частей

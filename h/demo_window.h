@@ -1,6 +1,7 @@
 #ifndef DEMO_WINDOW_H
 #define DEMO_WINDOW_H
 
+#include"diff_system.h"
 #include <QDialog>
 
 namespace Ui {
@@ -17,8 +18,8 @@ public:
     QImage screen_display;
 
     ~demo_window();
-    void displayObstacle(int, int , int*);
-    void displayScreen();
+    void displayObstacle(diff_system * sys);
+    void displayScreen(diff_system * sys);
 private:
     Ui::demo_window *ui;
 

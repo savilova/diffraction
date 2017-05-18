@@ -2,7 +2,7 @@
 
 obstacle::obstacle()
 {
-    pixel = 10;
+    pixel = 100;
     width = 1;
     size = 1;
     calc_data = new int[1];
