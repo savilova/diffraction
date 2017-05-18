@@ -26,7 +26,9 @@ main_window::~main_window()
 void main_window::on_fromTemp_triggered()
 {
     settingWin = new temp_setting(this); //открываем окно настроек параметров
-    settingWin->show();
+    settingWin->setModal(true);
+    settingWin->setFixedSize(450,350);
+    settingWin->exec();
 
 }
 
@@ -34,5 +36,7 @@ void main_window::on_demo_triggered()
 {
 
     demoWin = new demo_window(this); //вызываем конструктор по умолчанию
-    demoWin->show();
+    demoWin->setModal(true);
+    demoWin->setFixedSize(750,475);
+    demoWin->exec();
 }
